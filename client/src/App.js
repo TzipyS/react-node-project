@@ -6,6 +6,7 @@ import Todos from './todos/Todos';
 import Posts from './posts/Posts';
 import Users from './users/Users';
 import Photos from './photos/Photos';
+import Nav from './Nav';
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          <Route path='/nav' element={<Nav />} />
           <Route path = '/' element = {<Layout />}>
             <Route path = '/' element={<Home />} />   
             <Route path = '/todos' element = {<Todos/>}/>

@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import Checkbox from '@mui/material/Checkbox';
+import FormDialog from "../todos/createTodo";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
+const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
 
 const Todos = () => {
     const [todos, setTodos] = useState([])
@@ -22,20 +27,66 @@ const Todos = () => {
         return <h1>Loading...</h1>
     }
 
+    //שינוי completed
+    const handleCheckboxChange = async (id) => {
+        const todo = todos.find(t => t._id === id)
+        const updatedTodo = {
+            _id: todo._id,
+            title: todo.title,
+            completed: !todo.completed
+        }
+        setTodos(todos.map(t => t._id === id ? updatedTodo : t))
+        try {
+            await Axios.put("http://localhost:4500/api/todos", updatedTodo)
+        } catch (error) {
+            console.error("Error updating todo:", error)
+            setTodos(todos)
+        }
+    };
+
+
+    const deleteTodo = async (id) => {
+        // const todoToDelete = todos.find(t => t._id === id);
+        const originalTodos = [...todos];
+        setTodos(todos.filter(t => t._id !== id));
+        try {
+            await Axios.delete("http://localhost:4500/api/todos", { data: { _id: id } });
+        } catch (error) {
+            console.error("Error deleting todo:", error);
+            setTodos(originalTodos);
+        }
+    };
+
 
     return (
         <div className="todos">
             {todos.map((todo) => (
-                <div key={todo.id} className="todo-item">
+                <div key={todo._id} className="todo-item">
                     <h3>{todo.title}</h3>
-                    <p>{todo.completed ? "Completed" : "Pending"}</p>
-                    <input 
-                        type='checkbox' 
-                        checked={todo.completed} 
-                        readOnly
-                    />
-                </div>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                        {/* <Stack direction="row" spacing={1} alignItems="center">
+                            <p>{todo.completed ? "Completed" : "Pending"}</p>
+                            <Checkbox {...label} checked={todo.completed}
+                                onChange={() => handleCheckboxChange(todo._id)} />
+                        </Stack> */}
+                        <Button
+                            variant="contained"
+                            onClick={() => handleCheckboxChange(todo._id)}
+                        >
+                            {todo.completed ? "✔ Completed" : "Pending"}
+                        </Button>
 
+
+
+                        <Stack spacing={2} direction="row">
+
+                            <FormDialog />
+                            <Button onClick={() => deleteTodo(todo._id)} variant="outlined">Delete</Button>
+                        </Stack>
+                    </Stack>
+
+
+                </div>
             ))}
             <Link to="/">Home</Link>
         </div>
