@@ -1,0 +1,127 @@
+/* בסיס לאיפוס */
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 100% גובה המסך */
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  flex: 0 0 auto; /* גובה קבוע */
+}
+
+main {
+  background-color: #f2f2f2;
+  flex: 1 0 auto; /* תופס את כל השטח שנותר */
+  padding: 20px;
+  height: 100vh; /* גובה מינימלי */
+  max-height: calc(100vh - 140px); /* פחות מקום ל-header/footer */
+  overflow-y: auto; /* מוסיף גלילה פנימית אם התוכן גדול */
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  flex: 0 0 auto; /* גובה קבוע */
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+.todo-item {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+a:hover {
+  background-color: #0056b3;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  padding: 20px;
+  min-height: 80vh;
+  justify-content: center; 
+}
+
+.photo-item {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  min-height: 80vh;
+}
+.user-item {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;    
+  min-height: 80vh;
+}
+.post-item {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
