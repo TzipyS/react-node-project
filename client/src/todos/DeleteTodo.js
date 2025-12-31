@@ -1,7 +1,6 @@
 import Axios from "axios";
 
 const deleteTodo = async ({id, todos, setTodos}) => {
-        // const todoToDelete = todos.find(t => t._id === id);
         const originalTodos = [...todos];
         setTodos(todos.filter(t => t._id !== id));
         try {

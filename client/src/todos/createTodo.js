@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Axios from 'axios';
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
@@ -22,11 +23,20 @@ export default function FormDialog() {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
-        const email = formJson.email;
-        console.log(email);
+        const title = formJson.title || "";
+        const tags = formJson.tags ? formJson.tags.split(",") : [];
+        const completed = formJson.completed || "false";
+        console.log(title, tags, completed);
         //קריאה לשרת פה
+        Axios.post("http://localhost:4500/api/todos", { title, tags, completed }).then((response) => {
+            console.log("Todo created successfully:", response.data);
+        }
+        ).catch((error) => {
+            console.error("Error creating todo:", error);
+        });
         handleClose();
-    };
+
+    }
 
     return (
         <React.Fragment>
@@ -40,21 +50,12 @@ export default function FormDialog() {
                         Enter the details for TODO creativity
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
-                        <TextField
-                            //   autoFocus
-                            //   required
-                            //   margin="dense"
-                            //   id="name"
-                            //   name="email"
-                            //   label="Email Address"
-                            //   type="email"
-                            //   fullWidth
-                            //   variant="standard"
+                        <div>
+                            <TextField label="Title" name="title" id="outlined-size-small" />
+                            <TextField label="Tags" name="tags" id="outlined-size-small" />
+                            <TextField label="Completed" name="completed" id="outlined-size-small" />
+                        </div>
 
-                            _id="id"
-                            title="title"
-                            completed= "boolean"
-                        />
                     </form>
                 </DialogContent>
                 <DialogActions>

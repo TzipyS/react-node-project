@@ -6,8 +6,6 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import deleteTodo from "./DeleteTodo";
 
-// const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
-
 const Todos = () => {
     const [todos, setTodos] = useState([])
 
@@ -45,18 +43,6 @@ const Todos = () => {
     };
 
 
-    // const deleteTodo = async (id) => {
-    //     // const todoToDelete = todos.find(t => t._id === id);
-    //     const originalTodos = [...todos];
-    //     setTodos(todos.filter(t => t._id !== id));
-    //     try {
-    //         await Axios.delete("http://localhost:4500/api/todos", { data: { _id: id } });
-    //     } catch (error) {
-    //         console.error("Error deleting todo:", error);
-    //         setTodos(originalTodos);
-    //     }
-    // };
-
 
     return (
         <div className="todos">
@@ -71,10 +57,7 @@ const Todos = () => {
                             {todo.completed ? "✔ Completed" : "Pending"}
                         </Button>
 
-
-
                         <Stack spacing={2} direction="row">
-
                             <FormDialog />
                             <Button
                                 variant="outlined"
@@ -83,8 +66,6 @@ const Todos = () => {
                             </Button>
                         </Stack>
                     </Stack>
-
-
                 </div>
             ))}
             <Link to="/">Home</Link>
