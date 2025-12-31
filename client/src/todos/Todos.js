@@ -5,6 +5,7 @@ import FormDialog from "../todos/createTodo";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import deleteTodo from "./DeleteTodo";
+import handleCheckboxChange from "./UpdateTodo";
 
 const Todos = () => {
     const [todos, setTodos] = useState([])
@@ -25,25 +26,6 @@ const Todos = () => {
         return <h1>Loading...</h1>
     }
 
-    //שינוי completed
-    const handleCheckboxChange = async (id) => {
-        const todo = todos.find(t => t._id === id)
-        const updatedTodo = {
-            _id: todo._id,
-            title: todo.title,
-            completed: !todo.completed
-        }
-        setTodos(todos.map(t => t._id === id ? updatedTodo : t))
-        try {
-            await Axios.put("http://localhost:4500/api/todos", updatedTodo)
-        } catch (error) {
-            console.error("Error updating todo:", error)
-            setTodos(todos)
-        }
-    };
-
-
-
     return (
         <div className="todos">
             {todos.map((todo) => (
@@ -52,7 +34,7 @@ const Todos = () => {
                     <Stack direction="row" spacing={1} alignItems="center">
                         <Button
                             variant="contained"
-                            onClick={() => handleCheckboxChange(todo._id)}
+                            onClick={() => handleCheckboxChange({id: todo._id, todos, setTodos})}
                         >
                             {todo.completed ? "✔ Completed" : "Pending"}
                         </Button>

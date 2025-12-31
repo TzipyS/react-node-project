@@ -35,7 +35,6 @@ export default function FormDialog() {
             console.error("Error creating todo:", error);
         });
         handleClose();
-
     }
 
     return (
