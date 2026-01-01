@@ -11,14 +11,17 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import FeedIcon from '@mui/icons-material/Feed';
-import PeopleIcon from '@mui/icons-material/People'; 
-import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary'; 
-import ChecklistIcon from '@mui/icons-material/Article';      
+import PeopleIcon from '@mui/icons-material/People';
+import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
+import ChecklistIcon from '@mui/icons-material/Article';
+import Search from "./common/Search";
+import { useState } from "react";
 
 
 const drawerWidth = 200;
 
 export default function Nav() {
+    const [data, setData] = useState([]);
 
     const itemsList = [
         {
@@ -48,9 +51,19 @@ export default function Nav() {
             <CssBaseline />
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
-                    <Typography variant="h6" noWrap component="div">
-                        TzipyS App 
+                    <Typography
+                        variant="h6" noWrap component="div"
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center', // מיישר אנכית
+                            width: '100%',
+                        }}
+                    >
+                        TzipyS App
+                        <Search posts={data} setPosts={setData} />
                     </Typography>
+
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -66,10 +79,10 @@ export default function Nav() {
                 }}
             >
                 <Toolbar />
-                
+
                 <Box sx={{ overflow: 'auto' }}>
+                    
                     <List>
-                        
                         {itemsList.map((item, index) => (
                             <ListItem disablePadding key={item.text}>
                                 <ListItemButton
