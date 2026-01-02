@@ -1,4 +1,4 @@
-import Axios from "axios";
+import {updateTodo as apiUpdateTodo} from "./ApiTodos";
 
 const handleCheckboxChange = async ({id, todos, setTodos}) => {
         const todo = todos.find(t => t._id === id)
@@ -9,7 +9,7 @@ const handleCheckboxChange = async ({id, todos, setTodos}) => {
         }
         setTodos(todos.map(t => t._id === id ? updatedTodo : t))
         try {
-            await Axios.put("http://localhost:4500/api/todos", updatedTodo)
+            await apiUpdateTodo(updatedTodo);
         } catch (error) {
             console.error("Error updating todo:", error)
             setTodos(todos)

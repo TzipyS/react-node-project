@@ -6,7 +6,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { createTodo as apiCreateTodo } from './ApiTodos';
+import { createUser as ApicreateUser } from './ApiUsers';
+
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
@@ -23,16 +24,18 @@ export default function FormDialog() {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
-        const title = formJson.title || "";
-        const tags = formJson.tags ? formJson.tags.split(",") : [];
-        const completed = formJson.completed || "false";
-        console.log(title, tags, completed);
-        //קריאה לשרת פה
-        apiCreateTodo(title, tags, completed).then((response) => {
-            console.log("Todo created successfully:", response.data);
+        const name = formJson.name || "";
+        const username = formJson.username || "";
+        const email = formJson.email || "";
+        const address = formJson.address || "";
+        const phone = formJson.phone || "";
+        console.log(name, username, email, address, phone);
+
+        ApicreateUser(name, username, email, address, phone).then((response) => {
+            console.log("User created successfully:", response.data);
         }
         ).catch((error) => {
-            console.error("Error creating todo:", error);
+            console.error("Error creating user:", error);
         });
         handleClose();
     }
@@ -40,19 +43,21 @@ export default function FormDialog() {
     return (
         <React.Fragment>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Create New Todo
+                Create User
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>creation</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Enter the details for TODO creativity
+                        Enter the details for USERS creativity
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Title" name="title" id="outlined-size-small" />
-                            <TextField label="Tags" name="tags" id="outlined-size-small" />
-                            <TextField label="Completed" name="completed" id="outlined-size-small" />
+                            <TextField label="Name" name="name" id="outlined-size-small" />
+                            <TextField label="Username" name="username" id="outlined-size-small" />
+                            <TextField label="Email" name="email" id="outlined-size-small" />
+                            <TextField label="Address" name="address" id="outlined-size-small" />
+                            <TextField label="Phone" name="phone" id="outlined-size-small" />
                         </div>
 
                     </form>

@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Axios from 'axios';
+import { createPost as ApicreatePost } from './ApiPosts';
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
@@ -26,8 +26,8 @@ export default function FormDialog() {
         const title = formJson.title || "";
         const body = formJson.body || "";
         console.log(title, body);
-        //קריאה לשרת פה
-        Axios.post("http://localhost:4500/api/posts", { title, body}).then((response) => {
+
+        ApicreatePost(title, body).then((response) => {
             console.log("Post created successfully:", response.data);
         }
         ).catch((error) => {
