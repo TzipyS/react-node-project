@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { createTodo as apiCreateTodo } from './ApiTodos';
 
-export default function FormDialog() {
+export default function FormDialog({ setTodos }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -25,16 +25,18 @@ export default function FormDialog() {
         const formJson = Object.fromEntries(formData.entries());
         const title = formJson.title || "";
         const tags = formJson.tags ? formJson.tags.split(",") : [];
-        const completed = formJson.completed || "false";
+        const completed = "false"
         console.log(title, tags, completed);
         //קריאה לשרת פה
-        apiCreateTodo(title, tags, completed).then((response) => {
-            console.log("Todo created successfully:", response.data);
-        }
-        ).catch((error) => {
-            console.error("Error creating todo:", error);
-        });
-        handleClose();
+        apiCreateTodo(title, tags, completed)
+            .then((response) => {
+                console.log("Todo created successfully:", response.data);
+                setTodos(prevTodos => [...prevTodos, response.data.todo]);
+                handleClose();
+            }
+            ).catch((error) => {
+                console.error("Error creating todo:", error);
+            });
     }
 
     return (
@@ -50,7 +52,7 @@ export default function FormDialog() {
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense"/>
+                            <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense" />
                             <TextField label="Tags" name="tags" id="outlined-size-small" />
                             <TextField label="Completed" name="completed" id="outlined-size-small" />
                         </div>

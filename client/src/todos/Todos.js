@@ -48,7 +48,7 @@ const Todos = () => {
             <Button variant="outlined" component={RouterLink}to="/">
                 HOME
             </Button>
-            <FormDialog />
+            <FormDialog setTodos={setTodos} todos={todos}/>
             {filteredTodos.map((todo) => (
                 <div key={todo._id} className="todo-item">
                     <h3>{todo.title}</h3>

@@ -7,8 +7,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { createPost as ApicreatePost } from './ApiPosts';
+import Alert from '@mui/material/Alert';
 
 export default function FormDialog() {
+
+    const [error, setError] = useState([]);
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -19,29 +23,43 @@ export default function FormDialog() {
         setOpen(false);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
         const title = formJson.title || "";
         const body = formJson.body || "";
-        console.log(title, body);
 
-        ApicreatePost(title, body).then((response) => {
-            console.log("Post created successfully:", response.data);
+
+        if (!title || !body) {
+            setError(["Both Title and Body are required"]);
+            return;
         }
-        ).catch((error) => {
-            console.error("Error creating post:", error);
-        });
-        handleClose();
-    }
+
+        try {
+            const response = await ApicreatePost(title, body);
+            console.log("Post created successfully:", response.data);
+            setError([]);
+            handleClose();
+        } catch (err) {
+            if (err.response && err.response.status === 400) {
+                const messages = Array.isArray(err.response.data.errors)
+                    ? err.response.data.errors
+                    : [err.response.data.errors]; // אם זה string, עוטפים במערך
+                setError(messages);
+            } else {
+                setError(["Server error. Please try again."]);
+            }
+        }
+    };
+
 
     return (
         <React.Fragment>
             <Button variant="contained" onClick={handleClickOpen}>
                 Create New Post
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose} disableRestoreFocus>
                 <DialogTitle>creation</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -52,7 +70,6 @@ export default function FormDialog() {
                             <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense" />
                             <TextField label="Body" name="body" id="outlined-size-small" fullWidth margin="dense" />
                         </div>
-
                     </form>
                 </DialogContent>
                 <DialogActions>
@@ -61,6 +78,11 @@ export default function FormDialog() {
                         Create
                     </Button>
                 </DialogActions>
+                {error.length > 0 && error.map((msg, index) => (
+                    <Alert key={index} severity="error" style={{ marginBottom: "10px" }}>
+                        {msg}
+                    </Alert>
+                ))}
             </Dialog>
         </React.Fragment>
     );

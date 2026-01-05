@@ -52,12 +52,14 @@ const Users = () => {
                 <div key={user.id} className="user-item">
                     <h3>{user.name}</h3>
                     <p>{user.email}</p>
+                    <Stack direction="row" spacing={2}>
                     <Button
                         variant="outlined" startIcon={<DeleteIcon />}
                         onClick={() => deleteUser({ id: user._id, users, setUsers })} >
                         Delete
                     </Button>
                     <UpdateUserDialog user={user} users={users} setUsers={setUsers} />
+                    </Stack>
                 </div>
             ))}
 
