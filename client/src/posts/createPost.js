@@ -38,8 +38,8 @@ export default function FormDialog() {
 
     return (
         <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Create Post
+            <Button variant="contained" onClick={handleClickOpen}>
+                Create New Post
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>creation</DialogTitle>

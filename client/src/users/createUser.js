@@ -42,8 +42,8 @@ export default function FormDialog() {
 
     return (
         <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Create User
+            <Button variant="contained" onClick={handleClickOpen}>
+                Create New User
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>creation</DialogTitle>

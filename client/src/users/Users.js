@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchUser as apifetchUser } from "./ApiUsers";
 import FormDialog from "./createUser";
 import deleteUser from "./DeleteUser";
 import Button from '@mui/material/Button';
 import UpdateUserDialog from "./UpdateUser"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link as RouterLink } from 'react-router-dom';
+
+
 
 
 const Users = () => {
@@ -25,20 +28,25 @@ const Users = () => {
     }
     return (
         <div className="users">
+            <Button variant="outlined"
+                component={RouterLink}
+                to="/">
+                HOME
+            </Button>
             <FormDialog />
             {users.map((user) => (
                 <div key={user.id} className="user-item">
                     <h3>{user.name}</h3>
                     <p>{user.email}</p>
                     <Button
-                        variant="outlined"
+                        variant="outlined" startIcon={<DeleteIcon />}
                         onClick={() => deleteUser({ id: user._id, users, setUsers })} >
                         Delete
                     </Button>
                     <UpdateUserDialog user={user} users={users} setUsers={setUsers} />
                 </div>
             ))}
-            <Link to="/">Home</Link>
+
         </div>
     )
 }

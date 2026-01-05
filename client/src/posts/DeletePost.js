@@ -13,3 +13,4 @@ const deletePost = async ({id, posts, setPosts}) => {
     };
 
 export default deletePost;
+

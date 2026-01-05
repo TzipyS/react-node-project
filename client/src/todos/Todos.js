@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FormDialog from "./createTodo";
 import Stack from '@mui/material/Stack';
@@ -7,6 +6,10 @@ import deleteTodo from "./DeleteTodo";
 import handleCheckboxChange from "./changeTodo"
 import { fetchTodos as apiFetchTodos } from "./ApiTodos";
 import UpdateTodoDialog from "./UpdateTodo"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link as RouterLink } from 'react-router-dom';
+
+
 
 
 
@@ -32,6 +35,11 @@ const Todos = () => {
 
     return (
         <div className="todos">
+            <Button variant="outlined"
+                component={RouterLink} 
+                to="/">
+                HOME
+            </Button>
             <FormDialog />
             {todos.map((todo) => (
                 <div key={todo._id} className="todo-item">
@@ -47,7 +55,7 @@ const Todos = () => {
                         <Stack spacing={2} direction="row">
 
                             <Button
-                                variant="outlined"
+                                variant="outlined" startIcon={<DeleteIcon />}
                                 onClick={() => deleteTodo({ id: todo._id, todos, setTodos })} >
                                 Delete
                             </Button>
@@ -57,7 +65,7 @@ const Todos = () => {
                     </Stack>
                 </div>
             ))}
-            <Link to="/">Home</Link>
+
         </div>
     )
 }

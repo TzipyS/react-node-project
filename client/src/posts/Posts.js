@@ -1,16 +1,19 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react"
 import FormDialog from "./createPost";
 import deletePost from "./DeletePost";
 import Button from '@mui/material/Button';
-import {fetchPosts as ApifetchPosts}from "./ApiPosts";
+import { fetchPosts as ApifetchPosts } from "./ApiPosts";
 import UpdatePostDialog from "./UpdatePost"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link as RouterLink } from 'react-router-dom';
+
+
 
 
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
-    
+
     const fetchPosts = async () => {
         try {
             const { data } = await ApifetchPosts();
@@ -28,13 +31,18 @@ const Posts = () => {
 
     return (
         <div className="posts">
+            <Button variant="outlined"
+                component={RouterLink}
+                to="/">
+                HOME
+            </Button>
             <FormDialog />
             {posts.map((post) => (
                 <div key={post._id} className="post-item">
                     <h3>{post.title}</h3>
                     <p>{post.body}</p>
                     <Button
-                        variant="outlined"
+                        variant="outlined" startIcon={<DeleteIcon />}
                         onClick={() => deletePost({ id: post._id, posts, setPosts })} >
                         Delete
                     </Button>
@@ -42,9 +50,8 @@ const Posts = () => {
                 </div>
 
             ))}
-            <Link to="/">Home</Link>
         </div>
-        
+
     )
 }
 export default Posts;
