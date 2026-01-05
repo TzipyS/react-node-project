@@ -6,7 +6,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { createTodo as apiCreateTodo } from './ApiTodos';
+import { CreatePhoto  as apiCreatePhoto } from "./ApiPhotos";
+
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false);
@@ -24,15 +25,14 @@ export default function FormDialog() {
         const formData = new FormData(event.currentTarget);
         const formJson = Object.fromEntries(formData.entries());
         const title = formJson.title || "";
-        const tags = formJson.tags ? formJson.tags.split(",") : [];
-        const completed = formJson.completed || "false";
-        console.log(title, tags, completed);
+        const imageUrl = formJson.imageUrl || ""
+        console.log(title, imageUrl);
         //קריאה לשרת פה
-        apiCreateTodo(title, tags, completed).then((response) => {
-            console.log("Todo created successfully:", response.data);
+        apiCreatePhoto(title,imageUrl).then((response) => {
+            console.log("Photo created successfully:", response.data);
         }
         ).catch((error) => {
-            console.error("Error creating todo:", error);
+            console.error("Error creating photos:", error);
         });
         handleClose();
     }
@@ -40,19 +40,18 @@ export default function FormDialog() {
     return (
         <React.Fragment>
             <Button variant="contained" onClick={handleClickOpen}>
-                Create New Todo
+                Create New Photo
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>creation</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Enter the details for TODO creativity
+                        Enter the details for PHOTO creativity
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
                             <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense"/>
-                            <TextField label="Tags" name="tags" id="outlined-size-small" />
-                            <TextField label="Completed" name="completed" id="outlined-size-small" />
+                            <TextField label="ImageUrl" name="imageUrl"  />
                         </div>
 
                     </form>

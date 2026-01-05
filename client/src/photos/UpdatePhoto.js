@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -10,13 +10,28 @@ import { updatePhotos as apiUpdatePhoto } from "./ApiPhotos";
 
 
 
-export default function UpdateTodoDialog({ photo, photos, setPhotos }) {
+
+export default function UpdatePhotoDialog({ photo, photos, setPhotos }) {
     const [open, setOpen] = useState(false);
+
+    // const [formValues, setFormValues] = useState({
+    //     title: photo.title || "",
+    //     imageUrl: photo.imageUrl || ""
+    // })
+
 
     const [formValues, setFormValues] = useState({
         title: photo.title || "",
         imageUrl: photo.imageUrl || ""
-    })
+    });
+
+    useEffect(() => {
+        if (!photo) return;
+        setFormValues({
+            title: photo.title || "",
+            imageUrl: photo.imageUrl || ""
+        });
+    }, [photo]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -39,21 +54,10 @@ export default function UpdateTodoDialog({ photo, photos, setPhotos }) {
             imageUrl: formValues.imageUrl
         };
 
-        const updatedPhotos = photos.map((p) => {
-            if (p._id === photo._id) return updatedPhoto;
-            else return p;
-        })
-        // setPhotos(updatedPhotos);
-
-        // try {
-        //     await apiUpdatePhoto(photo._id, updatedPhoto)
-        // } catch (error) {
-        //     console.error("Error updating photo:", error);
-        //     setPhotos(photos);
-        // }
 
         try {
-            const updatedFromServer = await apiUpdatePhoto(photo._id, updatedPhoto);
+            const response = await apiUpdatePhoto(photo._id, updatedPhoto);
+            const updatedFromServer = response.data;
             const updatedPhotos = photos.map(p =>
                 p._id === photo._id ? updatedFromServer : p
             );
@@ -67,7 +71,7 @@ export default function UpdateTodoDialog({ photo, photos, setPhotos }) {
 
     return (
         <>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button variant="outlined" onClick={handleClickOpen} sx={{ color: 'rgba(255, 255, 255, 0.54)' }}>
                 Update
             </Button>
             <Dialog open={open} onClose={handleClose}>
@@ -92,7 +96,7 @@ export default function UpdateTodoDialog({ photo, photos, setPhotos }) {
                             name="imageUrl"
                             label="ImageUrl"
                             fullWidth
-                            value={formValues.imageUrl.toString()}
+                            value={formValues.imageUrl}
                             onChange={handleChange}
                         />
                     </form>

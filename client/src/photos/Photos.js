@@ -3,6 +3,7 @@ import { fetchPhotos as ApifetchPhotos } from "./ApiPhotos";
 import TitlebarImageList from "./ShowPhotos"
 import Button from '@mui/material/Button';
 import { Link as RouterLink } from 'react-router-dom';
+import FormDialog from "./createPhoto"
 
 
 const Photos = () => {
@@ -31,7 +32,8 @@ const Photos = () => {
                 to="/">
                 HOME
             </Button>
-            
+
+                <FormDialog />
             
             <TitlebarImageList photos={photos} setPhotos={setPhotos} />
         </div>

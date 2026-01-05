@@ -5,12 +5,12 @@ export const fetchPhotos = () => {
 };
 
 
-export const updatePhotos = (photo) => {
-  return Axios.put("http://localhost:4500/api/photos", photo);
+export const updatePhotos = (_id, updatedPhoto) => {
+  return Axios.put("http://localhost:4500/api/photos", { _id, ...updatedPhoto });
 };
 
 
-export const createPhoto = (title, imageUrl) => {
+export const CreatePhoto = (title, imageUrl) => {
   return Axios.post("http://localhost:4500/api/photos", { title, imageUrl});
 };
 

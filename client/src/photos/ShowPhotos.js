@@ -2,11 +2,16 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
 import deletePhoto from './DeletePhoto';
-import UpdateTodoDialog from "./UpdatePhoto"
+import UpdatePhotoDialog from "./UpdatePhoto"
+import CreateIcon from '@mui/icons-material/Create';
+// import Stack from '@mui/material/Stack';
+// import Button from '@mui/material/Button';
+
+
+
+
 
 export default function TitlebarImageList({ photos, setPhotos }) { // צריך להעביר setPhotos
     return (
@@ -37,24 +42,30 @@ export default function TitlebarImageList({ photos, setPhotos }) { // צריך �
                         title={photo.title}
                         actionIcon={
                             <>
-                                <IconButton
+                                {/* <IconButton
                                     sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                                     aria-label={`info about ${photo.title}`}
                                 >
                                     <InfoIcon />
-                                </IconButton>
+                                </IconButton> */}
 
-                                <Button
+                                {/* <Button
                                     variant="outlined"
                                     startIcon={<DeleteIcon />}
                                     sx={{ color: 'white', borderColor: 'white', ml: 1 }}
                                     onClick={() => deletePhoto({ id: photo._id, photos, setPhotos })}
                                 >
                                     DELETE
-                                </Button>
-                               <UpdateTodoDialog photo={photo} photos={photos} setPhotos={setPhotos} />
+                                </Button> */}
 
-
+                                <UpdatePhotoDialog photo={photo} photos={photos} setPhotos={setPhotos} />
+                                    
+                                <IconButton aria-label="delete"
+                                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                                    onClick={() => deletePhoto({ id: photo._id, photos, setPhotos })}
+                                >
+                                    <DeleteIcon />
+                                </IconButton>
 
                             </>
                         }
