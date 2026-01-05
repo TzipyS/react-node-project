@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { updatePost as apiUpdatePost } from "./ApiPosts";
+import CreateIcon from '@mui/icons-material/Create';
 
 
 
@@ -58,6 +59,7 @@ export default function UpdatePostDialog({ post, posts, setPosts  }) {
     return (
         <>
             <Button variant="outlined" onClick={handleClickOpen}>
+                <CreateIcon />
                 Update
             </Button>
             <Dialog open={open} onClose={handleClose}>

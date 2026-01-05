@@ -59,7 +59,6 @@ const Todos = () => {
                                 onClick={() => deleteTodo({ id: todo._id, todos, setTodos })} >
                                 Delete
                             </Button>
-
                             <UpdateTodoDialog todo={todo} todos={todos} setTodos={setTodos} />
                         </Stack>
                     </Stack>

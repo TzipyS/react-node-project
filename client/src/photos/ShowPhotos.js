@@ -5,7 +5,6 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import deletePhoto from './DeletePhoto';
 import UpdatePhotoDialog from "./UpdatePhoto"
-import CreateIcon from '@mui/icons-material/Create';
 // import Stack from '@mui/material/Stack';
 // import Button from '@mui/material/Button';
 

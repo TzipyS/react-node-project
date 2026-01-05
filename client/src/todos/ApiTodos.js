@@ -22,3 +22,7 @@ export const createTodo = (title, tags, completed) => {
 export const deleteTodo = (id) => {
   return   Axios.delete("http://localhost:4500/api/todos", { data: { _id: id } });
 };
+
+export const fetchTodosById = (id) => {
+  return Axios.get(`http://localhost:4500/api/todos/${id}`)
+}

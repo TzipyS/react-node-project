@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { updateUser as apiUpdateUser } from "./ApiUsers";
+import CreateIcon from '@mui/icons-material/Create';
 
 
 export default function UpdateUserDialog({ user, users, setUsers }) {
@@ -60,6 +61,7 @@ export default function UpdateUserDialog({ user, users, setUsers }) {
     return (
         <>
             <Button variant="outlined" onClick={handleClickOpen}>
+                <CreateIcon />
                 Update
             </Button>
             <Dialog open={open} onClose={handleClose}>

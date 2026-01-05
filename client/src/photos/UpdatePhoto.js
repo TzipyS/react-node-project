@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -7,18 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { updatePhotos as apiUpdatePhoto } from "./ApiPhotos";
-
+import CreateIcon from '@mui/icons-material/Create';
+import IconButton from '@mui/material/IconButton';
 
 
 
 export default function UpdatePhotoDialog({ photo, photos, setPhotos }) {
     const [open, setOpen] = useState(false);
-
-    // const [formValues, setFormValues] = useState({
-    //     title: photo.title || "",
-    //     imageUrl: photo.imageUrl || ""
-    // })
-
 
     const [formValues, setFormValues] = useState({
         title: photo.title || "",
@@ -71,9 +66,13 @@ export default function UpdatePhotoDialog({ photo, photos, setPhotos }) {
 
     return (
         <>
-            <Button variant="outlined" onClick={handleClickOpen} sx={{ color: 'rgba(255, 255, 255, 0.54)' }}>
-                Update
-            </Button>
+            <IconButton aria-label="delete"
+                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                onClick={handleClickOpen}
+            >
+                <CreateIcon />
+            </IconButton>
+
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Update Photo</DialogTitle>
                 <DialogContent>

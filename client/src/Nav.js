@@ -8,6 +8,7 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import TaskIcon from '@mui/icons-material/Task';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import FeedIcon from '@mui/icons-material/Feed';
@@ -26,7 +27,7 @@ export default function Nav() {
     const itemsList = [
         {
             text: "Todos",
-            icon: <ChecklistIcon />,
+            icon: <TaskIcon />,
             to: "/todos" // <-- add link targets
         },
         {

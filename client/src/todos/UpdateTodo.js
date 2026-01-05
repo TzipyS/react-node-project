@@ -7,6 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { updateTodo as apiUpdateTodo } from "./ApiTodos";
+import CreateIcon from '@mui/icons-material/Create';
+
 
 
 export default function UpdateTodoDialog({ todo, todos, setTodos }) {
@@ -57,6 +59,7 @@ export default function UpdateTodoDialog({ todo, todos, setTodos }) {
     return (
         <>
             <Button variant="outlined" onClick={handleClickOpen}>
+                <CreateIcon />
                 Update
             </Button>
             <Dialog open={open} onClose={handleClose}>
