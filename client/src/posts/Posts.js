@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import FormDialog from "./createPost";
 import deletePost from "./DeletePost";
 import Button from '@mui/material/Button';
 import {fetchPosts as ApifetchPosts}from "./ApiPosts";
-
+import UpdatePostDialog from "./UpdatePost"
 
 
 
@@ -30,7 +30,7 @@ const Posts = () => {
         <div className="posts">
             <FormDialog />
             {posts.map((post) => (
-                <div key={post.id} className="post-item">
+                <div key={post._id} className="post-item">
                     <h3>{post.title}</h3>
                     <p>{post.body}</p>
                     <Button
@@ -38,9 +38,7 @@ const Posts = () => {
                         onClick={() => deletePost({ id: post._id, posts, setPosts })} >
                         Delete
                     </Button>
-                    <Button variant="outlined">
-                        Update
-                    </Button>
+                    <UpdatePostDialog post={post} posts={posts} setPosts={setPosts} />
                 </div>
 
             ))}

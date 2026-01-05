@@ -50,7 +50,7 @@ export default function FormDialog() {
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Title" name="title" id="outlined-size-small" />
+                            <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense"/>
                             <TextField label="Tags" name="tags" id="outlined-size-small" />
                             <TextField label="Completed" name="completed" id="outlined-size-small" />
                         </div>

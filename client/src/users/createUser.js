@@ -53,11 +53,11 @@ export default function FormDialog() {
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Name" name="name" id="outlined-size-small" />
-                            <TextField label="Username" name="username" id="outlined-size-small" />
-                            <TextField label="Email" name="email" id="outlined-size-small" />
-                            <TextField label="Address" name="address" id="outlined-size-small" />
-                            <TextField label="Phone" name="phone" id="outlined-size-small" />
+                            <TextField label="Name" name="name" type="text" fullWidth margin="dense"/>
+                            <TextField label="Username" name="username" type="text" fullWidth margin="dense"/>
+                            <TextField label="Email" name="email" type="email" fullWidth margin="dense"/>
+                            <TextField label="Address" name="address" type="text" fullWidth margin="dense"/>
+                            <TextField label="Phone" name="phone" type="tel" fullWidth margin="dense"/>
                         </div>
 
                     </form>

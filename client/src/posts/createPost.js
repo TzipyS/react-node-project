@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -49,8 +49,8 @@ export default function FormDialog() {
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Title" name="title" id="outlined-size-small" />
-                            <TextField label="Body" name="body" id="outlined-size-small" />
+                            <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense" />
+                            <TextField label="Body" name="body" id="outlined-size-small" fullWidth margin="dense" />
                         </div>
 
                     </form>

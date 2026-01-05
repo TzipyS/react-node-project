@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import FormDialog from "../todos/createTodo";
+import FormDialog from "./createTodo";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import deleteTodo from "./DeleteTodo";
-import handleCheckboxChange from "./UpdateTodo";
+import handleCheckboxChange from "./changeTodo"
 import { fetchTodos as apiFetchTodos } from "./ApiTodos";
+import UpdateTodoDialog from "./UpdateTodo"
+
 
 
 const Todos = () => {
@@ -49,9 +51,8 @@ const Todos = () => {
                                 onClick={() => deleteTodo({ id: todo._id, todos, setTodos })} >
                                 Delete
                             </Button>
-                            <Button variant="outlined">
-                                Update
-                            </Button>
+
+                            <UpdateTodoDialog todo={todo} todos={todos} setTodos={setTodos} />
                         </Stack>
                     </Stack>
                 </div>

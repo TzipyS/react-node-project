@@ -9,8 +9,8 @@ export const fetchPosts = () => {
   return Axios.get("http://localhost:4500/api/posts");
 };
 
-export const createPost = (title, tags, completed) => {
-  return Axios.post("http://localhost:4500/api/posts", { title, tags, completed });
+export const createPost = (title, body) => {
+  return Axios.post("http://localhost:4500/api/posts", { title, body});
 };
 
 export const deletePost = (id) => {
