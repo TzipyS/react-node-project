@@ -30,7 +30,7 @@ const Todos = () => {
         fetchTodos()
     }, [])
 
-        useEffect(() => {
+    useEffect(() => {
         if (!todos) return
         const filtred = todos.filter(todo =>
             Object.values(todo).some(value =>
@@ -41,14 +41,14 @@ const Todos = () => {
     }, [query, todos])
 
     if (todos.length === 0) return <h1>Loading...</h1>
-    
+
 
     return (
         <div className="todos">
-            <Button variant="outlined" component={RouterLink}to="/">
+            <Button variant="outlined" component={RouterLink} to="/">
                 HOME
             </Button>
-            <FormDialog setTodos={setTodos} todos={todos}/>
+            <FormDialog setTodos={setTodos} todos={todos} />
             {filteredTodos.map((todo) => (
                 <div key={todo._id} className="todo-item">
                     <h3>{todo.title}</h3>

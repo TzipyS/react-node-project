@@ -71,13 +71,14 @@ export default function UpdateTodoDialog({ todo, todos, setTodos }) {
                     <form onSubmit={handleSubmit} id={`update-form-${todo._id}`}>
                         <TextField
                             autoFocus
-                            required
                             margin="dense"
                             name="title"
                             label="Title"
                             fullWidth
                             value={formValues.title}
                             onChange={handleChange}
+                            required   
+                            helperText="This field is required"
                         />
                         <TextField
                             margin="dense"

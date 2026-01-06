@@ -73,13 +73,14 @@ export default function UpdateUserDialog({ user, users, setUsers }) {
                     <form onSubmit={handleSubmit} id={`update-form-${user._id}`}>
                         <TextField
                             autoFocus
-                            required
                             margin="dense"
                             name="name"
                             label="Name"
                             fullWidth
                             value={formValues.name}
                             onChange={handleChange}
+                            required   
+                            helperText="This field is required"
                         />
                         <TextField
                             margin="dense"
@@ -88,6 +89,8 @@ export default function UpdateUserDialog({ user, users, setUsers }) {
                             fullWidth
                             value={formValues.username}
                             onChange={handleChange}
+                            required   
+                            helperText="This field is required"
                         />
                         <TextField
                             margin="dense"
@@ -96,6 +99,8 @@ export default function UpdateUserDialog({ user, users, setUsers }) {
                             fullWidth
                             value={formValues.email}
                             onChange={handleChange}
+                            required   
+                            helperText="This field is required"
                         />
                         <TextField
                             margin="dense"

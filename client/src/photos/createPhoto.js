@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { CreatePhoto  as apiCreatePhoto } from "./ApiPhotos";
+import { CreatePhoto as apiCreatePhoto } from "./ApiPhotos";
 
 
 export default function FormDialog() {
@@ -28,7 +28,7 @@ export default function FormDialog() {
         const imageUrl = formJson.imageUrl || ""
         console.log(title, imageUrl);
         //קריאה לשרת פה
-        apiCreatePhoto(title,imageUrl).then((response) => {
+        apiCreatePhoto(title, imageUrl).then((response) => {
             console.log("Photo created successfully:", response.data);
         }
         ).catch((error) => {
@@ -50,8 +50,18 @@ export default function FormDialog() {
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense"/>
-                            <TextField label="ImageUrl" name="imageUrl"  />
+                            <TextField
+                                label="Title"
+                                name="title"
+                                id="outlined-size-small"
+                                fullWidth margin="dense"
+                                required
+                                helperText="This field is required" />
+                            <TextField
+                                label="ImageUrl"
+                                name="imageUrl"
+                                required
+                                helperText="This field is required" />
                         </div>
 
                     </form>

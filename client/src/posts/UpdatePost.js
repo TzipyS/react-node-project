@@ -71,13 +71,14 @@ export default function UpdatePostDialog({ post, posts, setPosts  }) {
                     <form onSubmit={handleSubmit} id={`update-form-${post._id}`}>
                         <TextField
                             autoFocus
-                            required
                             margin="dense"
                             name="title"
                             label="Title"
                             fullWidth
                             value={formValues.title}
                             onChange={handleChange}
+                            required   
+                            helperText="This field is required"
                         />
                         <TextField
                             margin="dense"
@@ -86,6 +87,8 @@ export default function UpdatePostDialog({ post, posts, setPosts  }) {
                             fullWidth
                             value={formValues.body}
                             onChange={handleChange}
+                            required   
+                            helperText="This field is required"
                         />
                     </form>
                 </DialogContent>

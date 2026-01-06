@@ -67,8 +67,10 @@ export default function FormDialog() {
                     </DialogContentText>
                     <form onSubmit={handleSubmit} id="subscription-form">
                         <div>
-                            <TextField label="Title" name="title" id="outlined-size-small" fullWidth margin="dense" />
-                            <TextField label="Body" name="body" id="outlined-size-small" fullWidth margin="dense" />
+                            <TextField label="Title" name="title" id="outlined-size-small" 
+                            fullWidth margin="dense" required   helperText="This field is required"/>
+                            <TextField label="Body" name="body" id="outlined-size-small" 
+                            fullWidth margin="dense" required   helperText="This field is required"/>
                         </div>
                     </form>
                 </DialogContent>

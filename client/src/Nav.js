@@ -120,7 +120,7 @@ export default function Nav() {
                     </List>
                 </Box>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3, ml: `${drawerWidth}px`, mt: "64px" }} >
+            <Box component="main" sx={{ flexGrow: 1,  ml: "40px",  mr: "40px",p: 3, mt: "64px" }} >
                 <Outlet context={{ query }} />
                 {/* <Outlet /> */}
             </Box>

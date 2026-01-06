@@ -5,11 +5,6 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import deletePhoto from './DeletePhoto';
 import UpdatePhotoDialog from "./UpdatePhoto"
-// import Stack from '@mui/material/Stack';
-// import Button from '@mui/material/Button';
-
-
-
 
 
 export default function TitlebarImageList({ photos, setPhotos }) { // צריך להעביר setPhotos
@@ -41,22 +36,7 @@ export default function TitlebarImageList({ photos, setPhotos }) { // צריך �
                         title={photo.title}
                         actionIcon={
                             <>
-                                {/* <IconButton
-                                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                                    aria-label={`info about ${photo.title}`}
-                                >
-                                    <InfoIcon />
-                                </IconButton> */}
-
-                                {/* <Button
-                                    variant="outlined"
-                                    startIcon={<DeleteIcon />}
-                                    sx={{ color: 'white', borderColor: 'white', ml: 1 }}
-                                    onClick={() => deletePhoto({ id: photo._id, photos, setPhotos })}
-                                >
-                                    DELETE
-                                </Button> */}
-
+            
                                 <UpdatePhotoDialog photo={photo} photos={photos} setPhotos={setPhotos} />
                                     
                                 <IconButton aria-label="delete"
