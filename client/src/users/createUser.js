@@ -57,7 +57,7 @@ export default function FormDialog({onUserCreated }) {
                             <TextField label="Name" name="name" type="text" fullWidth margin="dense" 
                             required   helperText="This field is required"/>
                             <TextField label="Username" name="username" type="text" fullWidth margin="dense"
-                            required   helperText="This field is required"/>
+                            required   helperText="This field is required" />
                             <TextField label="Email" name="email" type="email" fullWidth margin="dense"
                             required   helperText="This field is required"/>
                             <TextField label="Address" name="address" type="text" fullWidth margin="dense"/>
